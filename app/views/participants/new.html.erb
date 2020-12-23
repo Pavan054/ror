@@ -2,6 +2,14 @@
 
 <%= (1..10).to_a.each {|x| puts 'x'} %>
 
+<% if @participant.errors.present? %>
+  <ul>
+    <% @participant.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @participant, url: '/participants', local: true) do |f| %>
     <p>
     <%= f.label :name %>
@@ -17,3 +25,4 @@
     </p>
     <%= f.submit 'create' %>
 <% end %>
+
