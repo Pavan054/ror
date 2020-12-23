@@ -1,0 +1,18 @@
+<h1>Hello Participant</h1>
+<%= link_to "Add Participant", new_participant_path %>
+<table>
+    <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    </tr>
+<tr>
+<% @participants.each do |participant| %>
+   <td> <%= participant.name %> </td>
+    <td> <%= participant.age %> </td>
+    <td> <%= participant.gender %> </td>
+    <br>
+    </tr>
+<% end %>
+
+</table>

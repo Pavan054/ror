@@ -1,0 +1,16 @@
+<h1>Clinic</h1>
+<%= link_to "Add Clinic", new_clinic_path %>
+<table>
+    <tr>
+    <th>Name</th>
+    <th>Location</th>
+    </tr>
+<tr>
+<% @clinics.each do |clinic| %>
+   <td> <%= clinic.name %> </td>
+    <td> <%= clinic.location %> </td>
+    <br>
+    </tr>
+<% end %>
+
+</table>
