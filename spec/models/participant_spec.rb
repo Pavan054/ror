@@ -7,9 +7,16 @@ RSpec.describe Participant, type: :model do
   context 'participant creation' do
     it 'does not create a participant if name is blank' do
       participant = build(:participant, name: '')
-      binding.pry
+      #binding.pry
       expect(participant.valid?).to eq false
       expect(participant.errors.messages[:name]).to eq(["can't be blank"])
+    end
+
+    it 'does not create a participant if name contains numbers' do
+      participant = build(:participant, name: 'p54')
+      #binding.pry
+      expect(participant.valid?).to eq false
+      expect(participant.errors.messages[:name]).to eq(["can't allow letters"])
     end
 
     it 'does not create a participant if age is blank' do

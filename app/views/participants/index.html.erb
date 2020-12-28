@@ -1,18 +1,24 @@
-<h1>Hello Participant</h1>
-<%= link_to "Add Participant", new_participant_path %>
+<h1> Show All the Participants </h1>
+<%= link_to "Arms_List", arms_path %>
+<%= link_to "Create new participant", new_arm_participant_path(@arm.id) %>
 <table>
-    <tr>
+  <tr>
+    <th>ID</th>
     <th>Name</th>
     <th>Age</th>
     <th>Gender</th>
+    <th>Arm Name</th>
+  </tr>
+  <% @participants.each do |participant| %>
+    <tr>
+      <td><%= participant.id %></td>
+      <td><%= participant.name %></td>
+      <td><%= participant.age %></td>
+      <td><%= participant.gender %></td>
+      <td><%= participant.arm.name if participant.arm %></td>
+      <td><%= link_to "Edit Participant", edit_arm_participant_path(@arm.id, participant.id) %></td>
+      </ br>
     </tr>
-<tr>
-<% @participants.each do |participant| %>
-   <td> <%= participant.name %> </td>
-    <td> <%= participant.age %> </td>
-    <td> <%= participant.gender %> </td>
-    </br>
-    </tr>
-<% end %>
+  <% end %>
 
 </table>

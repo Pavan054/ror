@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class Participant < ApplicationRecord
+  belongs_to :arm
   validates :name, :age, :gender, presence: true
 
   validates :gender, inclusion: { in: %w[Male Female],
                                   message: 'Gender must be either male or female' }
 
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z\s]+\Z/,
+  message: "only allows letters" }
 
+  validates :age, numericality: { only_integer: true }
   before_validation :handle_gender
   after_validation :method_after_validation
 

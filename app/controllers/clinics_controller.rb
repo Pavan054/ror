@@ -6,7 +6,7 @@ class ClinicsController < ApplicationController
   end
 
   def new
-    @clinic = Clinic.new
+    @clinic ||= Clinic.new
   end
 
   def show; end
@@ -17,8 +17,8 @@ class ClinicsController < ApplicationController
     # binding.pry
     required_params = params.require(:clinic).permit(:name, :location)
     # binding.pry
-    clinic = Clinic.new(required_params)
-    if clinic.save
+    @clinic = Clinic.new(required_params)
+    if @clinic.save
       redirect_to clinics_path
     else
       render :new
